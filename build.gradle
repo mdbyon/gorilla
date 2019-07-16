@@ -4,6 +4,11 @@ plugins {
 	id 'war'
 }
 
+
+test {
+	useJUnitPlatform()
+}
+
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.byon.gorilla'
@@ -18,5 +23,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+	testCompile("org.springframework.boot:spring-boot-starter-test")
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
 }
