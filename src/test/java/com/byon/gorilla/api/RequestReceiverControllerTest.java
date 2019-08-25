@@ -21,9 +21,15 @@ public class RequestReceiverControllerTest {
     MockMvc mockMvc;
 
     @Test
-    public void health_endpoint_is_up() throws Exception{
+    public void health_endpoint_is_up() throws Exception {
         mockMvc.perform(get("/health"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(StringContains.containsString("up")));
+    }
+
+    @Test
+    public void hit_graphql_server() throws Exception {
+        mockMvc.perform(get("/request"))
+                .andExpect(status().isOk());
     }
 }

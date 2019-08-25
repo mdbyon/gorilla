@@ -26,4 +26,9 @@ dependencies {
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
 	testCompile("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+	compile group: 'com.graphql-java', name: 'graphql-java', version: '2019-08-02T04-53-20-6063e7e'
+	compile group: 'com.graphql-java', name: 'graphql-java-tools', version: '5.2.4'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.1.6.RELEASE'
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.17'
+
 }
