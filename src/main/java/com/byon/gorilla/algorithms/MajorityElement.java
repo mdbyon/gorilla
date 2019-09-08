@@ -1,3 +1,6 @@
+package com.byon.gorilla.algorithms;
+import java.util.TreeMap;
+
 public class MajorityElement{
 
   public int majorityElement(int[] nums) {
