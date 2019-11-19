@@ -9,6 +9,9 @@ public class SortColors {
         int index = 0;
 
         while(index < nums.length){
+            if(index >= twoIndex){
+                break;
+            }
             while(nums[index] == 0 || nums[index] == 2){
 
                 if(nums[index] == 0){
@@ -21,9 +24,6 @@ public class SortColors {
                 }
 
                 if(nums[index] == 2){
-                    if(index >= twoIndex){
-                        break;
-                    }
                     swap(twoIndex, index, nums);
                     twoIndex--;
                 }
