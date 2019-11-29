@@ -19,10 +19,10 @@ public class LinkedPalindrome {
         }
 
         int reverseTo = 0;
-        if(size % 2 == 0) {
-            reverseTo = (size - 1)/2;
-        } else{
-            reverseTo = (size - 1)/2 - 1;
+        if (size % 2 == 0) {
+            reverseTo = (size - 1) / 2;
+        } else {
+            reverseTo = (size - 1) / 2 - 1;
         }
         ListNode p1 = reverseTo(front, reverseTo);
 
@@ -32,7 +32,7 @@ public class LinkedPalindrome {
             p2 = p2.next;
         }
 
-        if(p2 == null && p1 != null) return false;
+        if (p2 == null && p1 != null) return false;
 
         return true;
 
@@ -54,7 +54,7 @@ public class LinkedPalindrome {
         ListNode next = null;
         int curr = 0;
 
-        if(index == 0){
+        if (index == 0) {
             head.next = null;
             return head;
         }
