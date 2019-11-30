@@ -3,7 +3,6 @@ package com.byon.gorilla.algorithms;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 public class SortColorsTest {

@@ -17,7 +17,6 @@ public class LongestSubstring {
         currWindow.add(s.charAt(p1));
 
         while (p2 < s.length()) {
-
             if (currWindow.contains(s.charAt(p2))) {
                 while (s.charAt(p1) != s.charAt(p2)) {
                     currWindow.remove(s.charAt(p1));
