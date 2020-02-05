@@ -43,15 +43,25 @@ public class LongestPalindromicSubstring {
             dp[i][i] = 1;
         }
 
-        for(int i = 2; i<s.length(); i++){
+        for(int i = 0; i<dp.length - 1; i++){
+            if(s.charAt(i) == s.charAt(i + 1)){
+                dp[i][i + 1] = 2;
+            }
+            result = Math.max(result, dp[i][i + 1]);
+        }
+
+
+        for(int i = 3; i<s.length(); i++){
             for(int j = 0; j < s.length() - i; j++){
                 if(s.charAt(j) == s.charAt(j + i)){
                     dp[j][j + i] = 2 + dp[j + 1][j + i - 1];
                 } else{
                     dp[j][j + i] = Math.max(dp[j + 1][j + i], dp[j][j + i - 1]);
                 }
+                result = Math.max(result, dp[j][j + i]);
             }
         }
+        System.out.println(result);
         return dp;
     }
 
@@ -79,6 +89,6 @@ public class LongestPalindromicSubstring {
         LongestPalindromicSubstring runner = new LongestPalindromicSubstring();
         int [][] cache = runner.longestPalindromeDP("cbbd");
 
-        System.out.println("==========> answer: " + runner.getLongestPalindrome(cache ,"cbbd"));
+        System.out.println("==========> answer: " + runner.getLongestPalindrome(cache, "cbbd"));
     }
 }
