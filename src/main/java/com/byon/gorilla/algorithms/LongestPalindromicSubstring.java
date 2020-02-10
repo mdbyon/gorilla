@@ -18,77 +18,57 @@ public class LongestPalindromicSubstring {
     // " any char " -> 1
     //if start char == end char -> return prev + 2
 
+    int[][] maxLength = null;
 
-    public static int longestPalindrome(String s, int start, int end){
-        if(end < start) return 0;
+    public String longestPalindromeDP(String s){
 
-        if(end == start) return 1;
+        boolean [][] dp = new boolean[s.length()][s.length()];
+        maxLength = new int[s.length()][s.length()];
 
-        if(s.charAt(start) == s.charAt(end)){
-            return 2 + longestPalindrome(s, start + 1, end - 1);
-        }
-        return Math.max(longestPalindrome(s, start + 1, end), longestPalindrome(s, start, end - 1));
-
-    }
-
-    int [][] dp = null;
-
-    public int [][] longestPalindromeDP(String s){
-
-        dp = new int[s.length()][s.length()];
-
-        int result = Integer.MIN_VALUE;
+        int result = 1;
+        String currResult = "";
 
         for(int i = 0; i<dp.length; i++){
-            dp[i][i] = 1;
+            dp[i][i] = true;
+            maxLength[i][i] = 1;
         }
 
         for(int i = 0; i<dp.length - 1; i++){
             if(s.charAt(i) == s.charAt(i + 1)){
-                dp[i][i + 1] = 2;
+                dp[i][i + 1] = true;
+                maxLength[i][i + 1] = 2;
+                currResult = s.substring(i, i + 2);
             }
-            result = Math.max(result, dp[i][i + 1]);
         }
 
 
-        for(int i = 3; i<s.length(); i++){
+        for(int i = 2; i<s.length(); i++){
             for(int j = 0; j < s.length() - i; j++){
-                if(s.charAt(j) == s.charAt(j + i)){
-                    dp[j][j + i] = 2 + dp[j + 1][j + i - 1];
-                } else{
-                    dp[j][j + i] = Math.max(dp[j + 1][j + i], dp[j][j + i - 1]);
-                }
-                result = Math.max(result, dp[j][j + i]);
-            }
-        }
-        System.out.println(result);
-        return dp;
-    }
+                if(s.charAt(j) == s.charAt(j + i)) {
+                    if (dp[j + 1][j + i - 1]) {
+                        dp[j][j + i] = true;
+                        maxLength[j][j + i] = 2 + maxLength[j + 1][j + i - 1];
 
-    public String getLongestPalindrome(int [][] dp, String original){
-        int longest = Integer.MIN_VALUE;
-
-        for(int i = 0; i< dp.length; i++){
-            for(int j = 0; j<dp[0].length;j++){
-                longest = Math.max(longest, dp[i][j]);
-            }
-        }
-
-        for(int i = 0; i < dp.length; i++){
-            for(int j = 0; j<dp[0].length; j++){
-                if(dp[i][j] == longest){
-                    return original.substring(i, j + 1);
+                        if (i + 1 > result) {
+                            currResult = s.substring(j, j + i + 1);
+                        }
+                    }else{
+                        maxLength[j][j + i] = Math.max(maxLength[j + 1][j + i], maxLength[j][j + i - 1]);
+                    }
+                }else{
+                     maxLength[j][j + i] = Math.max(maxLength[j + 1][j + i], maxLength[j][j + i - 1]);
                 }
             }
         }
-        return "";
+        return currResult;
     }
+
 
 
     public static void main(String [] args){
         LongestPalindromicSubstring runner = new LongestPalindromicSubstring();
-        int [][] cache = runner.longestPalindromeDP("cbbd");
 
-        System.out.println("==========> answer: " + runner.getLongestPalindrome(cache, "cbbd"));
+        System.out.println("==========> answer: " + runner.longestPalindromeDP("abacaca"));
+        System.out.println("==========> cache: " + runner.maxLength[0][6]);
     }
 }
