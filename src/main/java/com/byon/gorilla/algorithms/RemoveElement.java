@@ -30,8 +30,7 @@ public class RemoveElement{
       return p1;
   }
 
-  public static void main(String [] args){
-      System.out.println(removeElement(new int[]{4,5,5}, 4));
+  public static void main(String [] args) {
+      System.out.println(-134217728 / 2);
   }
-
 }
